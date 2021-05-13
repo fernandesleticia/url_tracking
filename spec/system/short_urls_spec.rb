@@ -24,7 +24,7 @@ RSpec.describe 'Short Urls', type: :system do
   describe 'index' do
     it 'shows a list of short urls' do
       visit root_path
-      expect(page).to have_text('HeyURL!')
+      expect(page).to have_text('Url Tracking!')
       # expect page to show 10 urls
     end
   end

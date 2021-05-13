@@ -23,25 +23,25 @@ default: &default
 
 development:
   <<: *default
-  database: hey-url_development
+  database: url_tracking_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: hey-url
+  username: postgres
 
   # The password associated with the postgres role (username).
-  #password:
+  password: postgres
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  #host: localhost
+  host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -57,7 +57,12 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: hey-url_test
+  database: url_tracking_test
+
+  username: postgres
+  host: localhost
+  password: postgres
+  port: 5432
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: hey-url_production
-  username: hey-url
-  password: <%= ENV['HEY-URL_DATABASE_PASSWORD'] %>
+  database: url_tracking_production
+  username: url_tracking
+  password: <%= ENV['URL_TRACKING_DATABASE_PASSWORD'] %>
