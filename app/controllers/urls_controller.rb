@@ -2,7 +2,6 @@
 
 class UrlsController < ApplicationController
   def index
-    # recent 10 short urls
     @url = Url.new
     @urls = Url.all
   end
@@ -18,7 +17,7 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @url = Url.new(short_url: 'ABCDE', original_url: 'http://google.com', created_at: Time.now)
+    @url = Url.find_by_short_url(params[:url])
     # implement queries
     @daily_clicks = [
       ['1', 13],
@@ -47,6 +46,7 @@ class UrlsController < ApplicationController
   end
 
   def visit
+    p '************'
     # params[:short_url]
     render plain: 'redirecting to url...'
   end
