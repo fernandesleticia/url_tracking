@@ -46,12 +46,19 @@ class UrlsController < ApplicationController
   end
 
   def visit
-    p '************'
-    # params[:short_url]
+    url = Url.find_by_original_url(params[:short_url])
+    url.update(clicks_count: 1)
+  
+    Click.create(url_id: url.id, browser: browser.name, platform: browser.platform.name)
+  
     render plain: 'redirecting to url...'
   end
 
   private 
+
+  def browser
+    @browser ||= Browser.new(request.headers['User-Agent'])
+  end
 
   def url_params
     params.require(:url).permit(:original_url)
