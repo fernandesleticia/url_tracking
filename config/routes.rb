@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root to: 'urls#index'
 
   resources :urls, only: %i[index create show], param: :url
+  get 'latest', to: 'urls#latest', as: :latest
   get ':short_url', to: 'urls#visit', as: :visit
 end

@@ -12,6 +12,6 @@ RSpec.describe Url, type: :model do
       skip 'add test'
     end
 
-    # add more tests
+    
   end
 end
