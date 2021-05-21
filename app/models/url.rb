@@ -3,8 +3,7 @@
 class Url < ApplicationRecord
   before_validation :generate_short_url
   
-  validates_presence_of :original_url
-  validates_presence_of :short_url
+  validates_presence_of :original_url, :short_url
   validates :original_url, format: URI::regexp(%w[http https])
 
   scope :latest, -> (amount) { last(amount) }
