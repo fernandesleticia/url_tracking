@@ -14,7 +14,7 @@ class UrlsController < ApplicationController
     else
       render json: {errors: @url.errors}, status: 422
     end
-  enddffdsfdfdfdfdfdf
+  end
 
   def show
     @url = Url.find_by_short_url(params[:url])
@@ -28,7 +28,7 @@ class UrlsController < ApplicationController
   end
 
   def visit
-    url = Url.find_by_original_url(params[:short_url])
+    url = Url.find_by_short_url(params[:short_url])
     render json: {errors: 'record not found'}, status: 404 and return if url.nil?
 
     url.update_attribute(:clicks_count, url.clicks_count + 1)
@@ -38,7 +38,7 @@ class UrlsController < ApplicationController
   end
 
   def latest
-    render json: { latest_urls: Url.latest }, status: 200
+    render json: { latest_urls: Url.latest(params[:amount]) }, status: 200
   end
 
   private 

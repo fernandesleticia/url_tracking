@@ -25,6 +25,19 @@ RSpec.describe Url, type: :model do
     end
   end
 
+  describe '.scopes' do 
+    context 'latest' do 
+      let!(:older_url) { FactoryBot.create(:url) } 
+      let!(:old_url) { FactoryBot.create(:url) }
+      let!(:new_url) { FactoryBot.create(:url) }
+      let!(:newest_url) { FactoryBot.create(:url) }
+      
+      it 'should retrieve the latest urls' do 
+        expect(Url.latest(2)).to eq([new_url, newest_url])
+      end
+    end
+  end
+
   describe 'generate_short_url' do 
     it 'should generate a short url on creation' do 
       expect(subject).to be_valid
